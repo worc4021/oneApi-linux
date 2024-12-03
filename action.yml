@@ -25,13 +25,15 @@ runs:
   - name: Install Intel oneAPI
     if: steps.cache-install.outputs.cache-hit != 'true'
     run: |
-      ${{ github.action_path }}/scripts/installOneAPI.sh ${{ inputs.LINUX_HPCKIT_URL }}  ${{ inputs.LINUX_COMPONENTS }}
+      scripts/installOneApi.sh ${{ inputs.LINUX_HPCKIT_URL }}  ${{ inputs.LINUX_COMPONENTS }}
     shell: bash
+    working-directory: ${{ github.action_path }}
 
   - name: Make oneapi available
     run: |
-      ${{ github.action_path }}/scripts/updateEnvironment.sh
+      scripts/updateEnvironment.sh
     shell: bash
+    working-directory: ${{ github.action_path }}
 
   
 
